@@ -1,0 +1,40 @@
+*,
+*::after,
+*::before {
+    margin:0;
+    padding:0;
+    box-sizing: inherit;
+}
+
+html {  /*root (fontsize)*/
+    // this defines what 1rem is            1rem = 10px
+    font-size:62.5%; /*whatever the user changes the font size in the browser*/
+
+   /* @include respond(phone) {
+        font-size: 50%;                     <=============== we don't need this one. Can delete it but I deided to keep it so I could see what was there
+    }                                                        bcs it's the same as tab-port
+*/
+    
+    @include respond(tab-land) { // this one asks width < 1200?
+        font-size: 56.25%; // 1rem = 9px, 9/16 = 56.25%
+    }
+
+    @include respond(tab-port) {    // this one asks width < 900? 
+        font-size: 50%; // 1rem = 8px, 8/16 = 50%
+    }       // if there's a 700px display, both apply but it's the last one that is ACTUALLY applied bcs cascading. if you happen to be writing a mobile first website, it's the other way around. In that acse we start with the lower width and move up to the upper width bcs we have min-width media queries.
+
+    @include respond(big-desktop) {
+        font-size: 75%; // 1rem - 12, 12/16 = 75%
+    }
+
+}
+
+body {
+    box-sizing:border-box;
+    padding:3rem;
+
+    @include respond(tab-port) {  
+        padding: 0;
+    } 
+}
+
